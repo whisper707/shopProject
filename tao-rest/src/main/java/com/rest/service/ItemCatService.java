@@ -1,5 +1,7 @@
 package com.rest.service;
 
-public interface ItemCatService {
+import com.rest.pojo.CatResult;
 
+public interface ItemCatService {
+    public CatResult getItemCatList();
 }
