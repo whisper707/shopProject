@@ -39,7 +39,7 @@ public class PictureServiceImpl implements PictureService {
         //UUID.randomUUID()
         //可以是时间+随机数生成文件名
         String imageName = IDUtils.genImageName();
-//把图片上传到ftp服务器（图片服务器）
+        //把图片上传到ftp服务器（图片服务器）
         //需要把ftp的参数配置到配置文件中
         //设置文件在服务器的存放路径，应该使用日期分隔的目录结构
         DateTime dateTime = new DateTime();
