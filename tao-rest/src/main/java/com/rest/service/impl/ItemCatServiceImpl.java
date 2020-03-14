@@ -19,32 +19,38 @@ public class ItemCatServiceImpl implements ItemCatService {
     @Override
     public CatResult getItemCatList() {
         CatResult catResult = new CatResult();
-        catResult.setData(this.getCatnodelist((long)0));
+        catResult.setData(this.getCatList1((long)0));
         return catResult;
     }
     
-    private List<CatNode> getCatnodelist(Long parentId){
+    private List<Object> getCatList1(Long parentId){
         //获取第一层列表
         TbItemCatExample example = new TbItemCatExample();
         TbItemCatExample.Criteria cri = example.createCriteria();
         cri.andParentIdEqualTo(parentId);
         List<TbItemCat> list = tbItemCatMapper.selectByExample(example);
-        List<CatNode> clist = new ArrayList<>();
+        List<Object> clist = new ArrayList<>();
+        //list存值
         for (TbItemCat t : list) {
             CatNode c = new CatNode();
-            //name
-            if (parentId == 0) {
-                c.setName("<a href='/products/"+t.getId()+".html'>"+t.getName()+"</a>");
-            } else {
-                c.setName(t.getName());
+            //判断是否有子分类
+            if (t.getIsParent()) {
+                //name
+                if (parentId == 0) {
+                    c.setName("<a href='/products/" + t.getId() + ".html'>" + t.getName() + "</a>");
+                } else {
+                    c.setName(t.getName());
+                }
+                //url
+                c.setUrl("/products/" + t.getId());
+                //item
+                c.setItem(getCatList1(t.getId()));
+                clist.add(c);
+            //无子分类
+            }else {
+                System.out.println("/products/"+t.getId()+"|" + t.getName());
+                clist.add("/products/"+t.getId()+"|" + t.getName());
             }
-            //url
-            c.setUrl("/products/"+t.getId()+".html");
-            //item
-            if (t.getIsParent()){
-                c.setItem(getCatnodelist(t.getId()));
-            }
-            clist.add(c);
         }
         return clist;
     }
