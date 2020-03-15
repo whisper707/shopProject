@@ -21,6 +21,7 @@
 
 	<!--注解驱动，以使得访问路径与方法的匹配可以通过注解配置-->
 	<mvc:annotation-driven />
+
 	<!--dubbox配置  自定义消费方名字 -->
 	<dubbo:application name="tao-protal"/>
 	<!-- 注册中心地址 -->

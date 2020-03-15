@@ -16,5 +16,5 @@
     <!-- zookeeper路径 -->
     <dubbo:registry address="zookeeper://192.168.232.128:2181" />
     <!-- 提供服务的接口 -->
-    <dubbo:annotation package="com.portal.service"/>
+    <dubbo:annotation package="com.portal.service,com.tao.service"/>
 </beans>

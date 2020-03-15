@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ContentServiceImpl implements ContentService {
@@ -73,5 +75,12 @@ public class ContentServiceImpl implements ContentService {
         }
         return TaotaoResult.ok();
 
+    }
+
+    @Override
+    public long getbyids(Long ids) {
+        System.out.println(ids);
+        TbContent t = tbContentMapper.selectByPrimaryKey(ids);
+        return t.getCategoryId();
     }
 }

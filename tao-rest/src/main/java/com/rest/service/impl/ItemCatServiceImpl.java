@@ -1,5 +1,6 @@
 package com.rest.service.impl;
 
+import com.rest.dao.JedisClient;
 import com.rest.pojo.CatNode;
 import com.rest.pojo.CatResult;
 import com.rest.service.ItemCatService;
@@ -7,6 +8,7 @@ import com.tao.mapper.TbItemCatMapper;
 import com.tao.pojo.TbItemCat;
 import com.tao.pojo.TbItemCatExample;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,8 +18,12 @@ public class ItemCatServiceImpl implements ItemCatService {
     @Autowired
     private TbItemCatMapper tbItemCatMapper;
 
+
+
+
     @Override
     public CatResult getItemCatList() {
+
         CatResult catResult = new CatResult();
         catResult.setData(this.getCatList1((long)0));
         return catResult;
